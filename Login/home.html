@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | South Indian Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="home">
+  <div class="navbar">
+    <h2>South Indian Heritage 🏡</h2>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="container">
+    <div class="profile">
+      <h3>🌸 Vanakkam / Namaskaram, <span id="uname"></span>!</h3>
+      <p>Native Place: <b id="place"></b></p>
+      <p>We're proud to celebrate the heritage of <b id="region"></b>.</p>
+    </div>
+
+<div class="heritage">
+  <h3>🏛️ South Indian Heritage</h3>
+  <div class="heritage-grid">
+    <div class="card-heritage">
+      <img src="https://images.unsplash.com/photo-1603881036764-74e4b6b5b7f4?auto=format&fit=crop&w=800&q=60" alt="Brihadeeswarar Temple">
+      <h4>Tamil Nadu</h4>
+      <p>Famous for its ancient temples, Dravidian architecture, classical arts, and grand festivals like Pongal and Karthigai Deepam.</p>
+    </div>
+    <div class="card-heritage">
+      <img src="https://images.unsplash.com/photo-1587463272314-7d94c49c64c8?auto=format&fit=crop&w=800&q=60" alt="Kerala Backwaters">
+      <h4>Kerala</h4>
+      <p>Known as 'God’s Own Country', Kerala shines with lush backwaters, Kathakali dance, Ayurveda, and serene houseboats.</p>
+    </div>
+  </div>
+</div>
+
+
+    <div class="json-view">
+      <h4>📜 Registered Users JSON:</h4>
+      <pre id="jsonData"></pre>
+    </div>
+  </div>
+
+  <script>
+    let user = JSON.parse(localStorage.getItem("loggedInUser"));
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (!user) window.location.href = "index.html";
+
+    document.getElementById("uname").innerText = user.name;
+    document.getElementById("place").innerText = user.place;
+    document.getElementById("jsonData").textContent = JSON.stringify(users, null, 2);
+
+    const place = user.place.toLowerCase();
+    let region = "South India";
+    if (place.includes("tamil") || place.includes("madurai") || place.includes("coimbatore") || place.includes("chennai")) {
+      region = "Tamil Nadu";
+    } else if (place.includes("kerala") || place.includes("kochi") || place.includes("trivandrum")) {
+      region = "Kerala";
+    }
+    document.getElementById("region").innerText = region;
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | South Indian Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth">
+  <div class="card">
+    <h2>Welcome Back 👋</h2>
+    <p>Login to your account</p>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="loginUser()">Login</button>
+    <p id="msg"></p>
+  </div>
+
+  <script>
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    document.getElementById("username").value = localStorage.getItem("currentCheck");
+
+    function loginUser() {
+      let u = document.getElementById("username").value.trim().toLowerCase();
+      let p = document.getElementById("password").value.trim();
+      let found = users.find(x => x.username === u && x.password === p);
+      if (found) {
+        localStorage.setItem("loggedInUser", JSON.stringify(found));
+        window.location.href = "home.html";
+      } else {
+        document.getElementById("msg").innerText = "❌ Invalid username or password!";
+      }
+    }
+  </script>
+</body>
+</html>

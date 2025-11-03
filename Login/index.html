@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome | South Indian Login Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="landing">
+  <div class="wrapper">
+    <h1>🌴 Vanakkam! 🙏</h1>
+    <p class="sub">Welcome to the South Indian User Portal</p>
+    <input type="text" id="checkUser" placeholder="Enter your username">
+    <button onclick="checkUser()">Continue</button>
+  </div>
+
+  <script>
+    let users = JSON.parse(localStorage.getItem('users')) || [
+      { username: "arun", password: "1234", name: "Arun Kumar", place: "Madurai" },
+      { username: "divya", password: "abcd", name: "Divya Raj", place: "Coimbatore" }
+    ];
+
+    function checkUser() {
+      const name = document.getElementById("checkUser").value.trim().toLowerCase();
+      const exists = users.find(u => u.username === name);
+      localStorage.setItem("currentCheck", name);
+      if (exists) {
+        window.location.href = "login.html";
+      } else {
+        window.location.href = "register.html";
+      }
+    }
+
+    localStorage.setItem('users', JSON.stringify(users));
+  </script>
+</body>
+</html>

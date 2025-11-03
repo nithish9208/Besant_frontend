@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | South Indian Heritage Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #fdfcfb, #e2d1c3);
+      color: #333;
+    }
+
+    header {
+      background: #6c2f2f;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+      letter-spacing: 1px;
+    }
+
+    header button {
+      background: #fff;
+      border: none;
+      color: #6c2f2f;
+      font-weight: bold;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    header button:hover {
+      background: #f0c7a1;
+    }
+
+    .user-info {
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    .user-info h2 {
+      font-size: 1.5em;
+      color: #6c2f2f;
+    }
+
+    .heritage-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 30px 60px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      color: #6c2f2f;
+      margin: 0 0 10px;
+    }
+
+    .json-view {
+      margin: 40px auto;
+      width: 80%;
+      background: #272822;
+      color: #eee;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏛 South Indian Heritage Portal</h1>
+    <button onclick="logout()">Logout</button>
+  </header>
+
+  <section class="user-info">
+    <h2 id="welcome"></h2>
+    <p id="userplace"></p>
+  </section>
+
+  <section class="heritage-section" id="heritage">
+    <!-- Heritage cards -->
+  </section>
+
+  <div class="json-view" id="jsonData"></div>
+
+  <script>
+    // Fetch users and current user
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const currentUser = localStorage.getItem('currentUser');
+
+    if (!currentUser) {
+      window.location.href = "index.html";
+    }
+
+    const userObj = users.find(u => u.username === currentUser);
+
+    if (userObj) {
+      document.getElementById("welcome").innerText = `Welcome, ${userObj.name}!`;
+      document.getElementById("userplace").innerText = `From ${userObj.place}`;
+    }
+
+    // Heritage data
+    const heritage = [
+      {
+        state: "Tamil Nadu",
+        title: "Meenakshi Amman Temple, Madurai",
+        img: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Meenakshi_Amman_Temple_Tower.JPG",
+        desc: "A Dravidian architectural marvel dedicated to Goddess Meenakshi, symbolizing Tamil Nadu’s spiritual heritage."
+      },
+      {
+        state: "Tamil Nadu",
+        title: "Brihadeeswarar Temple, Thanjavur",
+        img: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Thanjavur_Brihadeeswara_Temple.jpg",
+        desc: "Built by Raja Raja Chola I, this UNESCO site is a masterpiece of Chola art and architecture."
+      },
+      {
+        state: "Kerala",
+        title: "Alleppey Backwaters",
+        img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Alleppey_backwaters.jpg",
+        desc: "Serene houseboats floating along the tranquil backwaters of Kerala’s Venice of the East."
+      },
+      {
+        state: "Kerala",
+        title: "Padmanabhaswamy Temple, Thiruvananthapuram",
+        img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Sree_Padmanabhaswamy_Temple%2C_TVM.jpg",
+        desc: "One of the richest temples in the world, reflecting Kerala’s cultural grandeur and devotion."
+      }
+    ];
+
+    // Render cards
+    const heritageContainer = document.getElementById("heritage");
+    heritage.forEach(item => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <img src="${item.img}" alt="${item.title}">
+        <div class="card-content">
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+          <small><b>${item.state}</b></small>
+        </div>
+      `;
+      heritageContainer.appendChild(card);
+    });
+
+    // JSON Viewer
+    document.getElementById("jsonData").innerText = JSON.stringify(users, null, 2);
+
+    function logout() {
+      localStorage.removeItem("currentUser");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

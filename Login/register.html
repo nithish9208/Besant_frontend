@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | South Indian Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth">
+  <div class="card">
+    <h2>🪔 New User Registration</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="place" placeholder="Native Place">
+    <button onclick="registerUser()">Register</button>
+  </div>
+
+  <script>
+    let users = JSON.parse(localStorage.getItem('users')) || [];
+
+    document.getElementById("username").value = localStorage.getItem("currentCheck");
+
+    function registerUser() {
+      const u = document.getElementById("username").value.trim().toLowerCase();
+      const p = document.getElementById("password").value.trim();
+      const n = document.getElementById("name").value.trim();
+      const pl = document.getElementById("place").value.trim();
+
+      if (u && p && n && pl) {
+        const newUser = { username: u, password: p, name: n, place: pl };
+        users.push(newUser);
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("loggedInUser", JSON.stringify(newUser));
+        window.location.href = "home.html";
+      } else {
+        alert("Please fill all fields!");
+      }
+    }
+  </script>
+</body>
+</html>

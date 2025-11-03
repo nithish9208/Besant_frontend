@@ -1,0 +1,135 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f7f2e8;
+  margin: 0;
+  color: #333;
+}
+
+.landing, .auth, .home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.wrapper, .card {
+  background: #fffdf6;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  width: 320px;
+}
+
+h1, h2, h3 {
+  color: #2b3a29;
+}
+
+.sub {
+  color: #555;
+  margin-bottom: 15px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background: #f4b400;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+button:hover {
+  background: #e6a100;
+}
+
+.navbar {
+  background: #f4b400;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.profile {
+  background: #fff8e1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.json-view {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  overflow-x: auto;
+}
+.heritage {
+  background: #fffdf8;
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.heritage h3 {
+  text-align: center;
+  color: #2b3a29;
+  margin-bottom: 20px;
+}
+
+.heritage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card-heritage {
+  background: #fdf6e3;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  transition: 0.3s;
+}
+
+.card-heritage:hover {
+  transform: scale(1.03);
+}
+
+.card-heritage img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-heritage h4 {
+  margin: 10px 0 5px;
+  text-align: center;
+  color: #5a381e;
+}
+
+.card-heritage p {
+  font-size: 14px;
+  padding: 0 10px 15px;
+  color: #444;
+  text-align: center;
+}

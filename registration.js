@@ -24,11 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
         } 
         else {
             // Example password validation
-            if (newobj.password.length < 6) {
-                alert("Password must be at least 6 characters long!");
+            if (newobj.password.length < 8) {
+                alert("Password must be at least 8 characters long!");
+                alert("Please try registering again with a valid password.");
                 return;
             }
-
+            window.location.href = "welcome.html"; // Redirect to welcome page
             console.log("✅ Registration successful:", newobj);
             alert(`Welcome, ${newobj.username}! Registration completed successfully.`);
         }
